@@ -3,12 +3,14 @@ angular.module('example', [])
   $scope.list = [];
   $http.get('https://www.reddit.com/r/lifeprotips/new.json?sort=new')
       .success(function (response) {
-        console.log(response.data.children[0].data.title);
+        supersonic.logger.debug(response.data.children[1].data.title);
       response.data.children.forEach (function (entry, i) {
-        var tmp = {"element": entry.data.title};
+        var tmp = {
+          "text": entry.data.title,
+          "score" : entry.data.score};
         $scope.list.push(tmp);
       });
     }).error(function (response) {
-      console.log(response);
+      supersonic.logger.debug(response);
     });
 });

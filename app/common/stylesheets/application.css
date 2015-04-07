@@ -3,3 +3,25 @@
   text-align: center;
   font-weight: 600;
 }
+
+.up-arrow{
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  max-width:0px;
+  max-height:0px;
+  border-bottom: 40px solid purple;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.down-arrow{
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  max-width:0px;
+  height:0px;
+  border-top: 40px solid purple;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}

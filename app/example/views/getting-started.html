@@ -6,17 +6,20 @@
     </super-navbar-title>
   </super-navbar>
 
-    <div class="wrapper" ng-app="app">
-      <ul>
-        <li ng-repeat="item in list">
-          <h1>{{ item.element }}</h1>
-        </li>
-      </ul>
-    </div>
-
-  <p>Awesome! This file is located at <strong>app/example/views/getting-started.html</strong> &mdash; open it, change some text and save the file. The changes are updated to all connected devices. Cool, huh?</p>
-
-  <p>Below, you can see our multi-page navigation in action. Tap on a button to move to a new view.</p>
+  <table border="0" cellpadding="10" cellspacing="0">
+    <tbody>
+      <tr ng-repeat="item in list">
+        <td>
+          {{ item.text }}
+        </td>
+        <td align="center">
+          <div class="up-arrow"></div>
+          <span> {{ item.score }}</span>
+          <div class="down-arrow"</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <super-navigate view-id="using-the-scanner">
     <button class="button button-block button-positive icon-left super-wand">Using the AppGyver Scanner</button>
@@ -25,18 +28,6 @@
   <super-navigate view-id="learn-more">
     <button class="button button-block button-positive icon-left super-university">Learn more</button>
   </super-navigate>
-
-  <h2>Get in touch with us!</h2>
-
-  <p>Feel free to contact us at <a href="mailto:contact@appgyver.com">contact@appgyver.com</a>, we would love to get your feedback!</p>
-
-  <div class="wrapper" ng-app="app">
-      <ul ng-controller="list">
-        <li ng-repeat="item in list">
-          <h1>{{ item.element }}</h1>
-        </li>
-      </ul>
-    </div>
 
 </div>
 
