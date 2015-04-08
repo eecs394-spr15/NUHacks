@@ -1,5 +1,40 @@
 .supersonic-navbar-mock {
-  background-color: #00B5FF !important;
+  background-color: #520063 !important;
   text-align: center;
   font-weight: 600;
 }
+
+.score-display {
+  vertical-align: middle;
+}
+
+span.glyphicon-menu-up {
+  font-size: 25px;
+  padding-bottom: -20px;
+  color: #2DB82D;
+}
+
+span.glyphicon-menu-down {
+  font-size: 25px;
+  padding-bottom: 10px;
+  padding-top: -20px;
+  color: red;
+}
+
+.padding {
+  background-color: #E6E6FA;
+}
+
+tr {
+  border-bottom:solid;
+  border-width: 1px 0;
+  border-color: #D3D3D3;
+}
+
+span.score {
+  font-size: 125%;
+}
+
+
+
+
