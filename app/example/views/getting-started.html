@@ -4,16 +4,18 @@
       NUHacks
     </super-navbar-title>
   </super-navbar>
-  <table border="0" cellpadding="10" cellspacing="0">
+  <table id="hack-table">
     <tbody>
       <tr ng-repeat="item in list">
         <td>
           {{ item.text }}
         </td>
         <td align="center">
-          <div class="up-arrow"></div>
-          <span> {{ item.score }}</span>
-          <div class="down-arrow"</div>
+          <div class="score-display">
+            <span class="glyphicon glyphicon-menu-up"></span><br>
+              <span class="score">{{ item.upvotes }}</span><br>
+            <span class="glyphicon glyphicon-menu-down"></span>
+          </div>
         </td>
       </tr>
     </tbody>

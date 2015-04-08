@@ -1,27 +1,40 @@
 .supersonic-navbar-mock {
-  background-color: #00B5FF !important;
+  background-color: #520063 !important;
   text-align: center;
   font-weight: 600;
 }
 
-.up-arrow{
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  max-width:0px;
-  max-height:0px;
-  border-bottom: 40px solid purple;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+.score-display {
+  vertical-align: middle;
 }
 
-.down-arrow{
-  border-left: 25px solid transparent;
-  border-right: 25px solid transparent;
-  max-width:0px;
-  height:0px;
-  border-top: 40px solid purple;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+span.glyphicon-menu-up {
+  font-size: 25px;
+  padding-bottom: -20px;
+  color: #2DB82D;
 }
+
+span.glyphicon-menu-down {
+  font-size: 25px;
+  padding-bottom: 10px;
+  padding-top: -20px;
+  color: red;
+}
+
+.padding {
+  background-color: #E6E6FA;
+}
+
+tr {
+  border-bottom:solid;
+  border-width: 1px 0;
+  border-color: #D3D3D3;
+}
+
+span.score {
+  font-size: 125%;
+}
+
+
+
+

@@ -1,15 +1,16 @@
 angular.module('example', [])
 .controller('list', function($scope, $http) {
   $scope.list = [];
-  $http.get('https://www.reddit.com/r/lifeprotips/new.json?sort=new')
-      .success(function (response) {
-        supersonic.logger.debug(response.data.children[1].data.title);
-      response.data.children.forEach (function (entry, i) {
-        var tmp = {
-          "text": entry.data.title,
-          "score" : entry.data.score};
-        $scope.list.push(tmp);
-      });
+  $http.get('https://dry-coast-1630.herokuapp.com/posts')
+      .success(function (data, status, header, config) {
+        supersonic.logger.debug(data);
+      // response.data.children.forEach (function (entry, i) {
+      //   var tmp = {
+      //     "text": entry.data.text,
+      //     "score" : entry.data.upvotes};
+      //   $scope.list.push(tmp);
+      // });
+      $scope.list = data;
     }).error(function (response) {
       supersonic.logger.debug(response);
     });
