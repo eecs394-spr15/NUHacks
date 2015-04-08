@@ -4,7 +4,7 @@
  ***********************************************************/
 
 navigation-bar {
-  background-color: #00B5FF;
+  background-color: #520063;
   color: #ffffff;
 }
 
@@ -34,14 +34,14 @@ tab-bar tab-bar-item:selected {
   color: #1596f7;
 }
 
-tab-bar-item#settings {
-  background-image: url(icons/cog.svg);
+tab-bar-item#tags {
+  background-image: url(icons/tags.svg)
 }
 
 tab-bar-item#index {
   background-image: url(icons/home.svg);
 }
 
-tab-bar-item#internet {
-  background-image: url(icons/search.svg);
+tab-bar-item#profile {
+  background-image: url(icons/profile.svg);
 }
