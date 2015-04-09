@@ -6,7 +6,7 @@
   </super-navbar>
   <table id="hack-table">
     <tbody ng-click="upvote()">
-      <tr ng-repeat="item in list">
+      <tr ng-repeat="item in list | orderBy:'-upvotes'"">
         <td>
           {{ item.text }}
         </td>

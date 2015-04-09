@@ -5,7 +5,7 @@ angular.module('example', [])
 
   $scope.vote = function(item, direction){
     item.upvotes += direction * 1;
-    $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, item)
+    $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
       .success(function (data, status, header, config){
         
       })
