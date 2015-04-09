@@ -1,6 +1,20 @@
 angular.module('example', [])
+
 .controller('list', function($scope, $http) {
   $scope.list = [];
+
+  $scope.vote = function(item, direction){
+    item.upvotes += direction * 1;
+    $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
+      .success(function (data, status, header, config){
+        
+      })
+      .error(function (response){
+        item.text = response;
+        supersonic.logger.debug(response);
+      });
+  };
+
   $http.get('https://dry-coast-1630.herokuapp.com/posts')
       .success(function (data, status, header, config) {
         supersonic.logger.debug(data);

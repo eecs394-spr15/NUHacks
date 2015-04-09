@@ -1,20 +1,20 @@
 <div class="padding" ng-app="example" ng-controller="list">
   <super-navbar>
     <super-navbar-title>
-      NUHacks {{ test }}
+      NUHacks
     </super-navbar-title>
   </super-navbar>
   <table id="hack-table">
     <tbody ng-click="upvote()">
-      <tr ng-repeat="item in list">
+      <tr ng-repeat="item in list | orderBy:'-upvotes'"">
         <td>
           {{ item.text }}
         </td>
         <td align="center">
           <div class="score-display">
-            <span class="glyphicon glyphicon-menu-up" ng-click="item.upvotes = item.upvotes + 1" ></span><br>
+            <span class="glyphicon glyphicon-menu-up" ng-click="vote(item, 1)" ></span><br>
               <span class="score">{{ item.upvotes }}</span><br>
-            <span class="glyphicon glyphicon-menu-down"  ng-click="item.upvotes = item.upvotes - 1"></span>
+            <span class="glyphicon glyphicon-menu-down"  ng-click="vote(item, -1)"></span>
           </div>
         </td>
       </tr>
