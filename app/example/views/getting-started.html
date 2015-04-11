@@ -7,6 +7,10 @@
       Add Hack
     </super-navbar-button>
   </super-navbar>
+  <div class="button-bar">
+      <a class="button">New</a>
+      <a class="button">Popular</a>
+  </div>
   <table id="hack-table" scroll>
     <tbody ng-click="upvote()">
       <tr ng-repeat="item in list | orderBy:'-upvotes'">
