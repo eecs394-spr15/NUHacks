@@ -5,18 +5,11 @@ angular.module('example', [])
   $scope.pages = 0;
 
   $scope.vote = function(item, direction){
-    if((item.upvoted && direction == 1) || (item.downvoted && direction == -1))
+    if(item.voteStatus == direction)
       return;
 
     item.upvotes += direction * 1;
-
-    if(direction == 1){
-      item.downvoted = false;
-      item.upvoted = true;
-    } else if(direction == -1){
-      item.upvoted = false;
-      item.downvoted = true;
-    }
+    item.voteStatus = direction;
 
     $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
       .success(function (data, status, header, config){})
@@ -60,8 +53,7 @@ angular.module('example', [])
       .success(function (data, status, header, config) {
         
         data.forEach(function(elem, i, array) {
-          elem.upvoted = false;
-          elem.downvoted = false;
+          elem.voteStatus = 0;
           $scope.list.push(elem);
         });
 
