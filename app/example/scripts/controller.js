@@ -25,27 +25,33 @@ angular.module('example', [])
 
   $scope.update = function(){
     /*
-    replace the upvotes for each item
-    doesn't get new posts that may have been added,
-    so once we had server-side verification we'll want
-    to use the method below (fetch by page) */
     $scope.list.forEach(function(elem, i, array){
       $http.get('https://dry-coast-1630.herokuapp.com/post/' + elem._id)
       .success(function (data, status, header, config) {
-        elem.upvotes = data.upvotes;
+        elem.voteStatus = data.voteStatus;
       }).error(function (response) {
         console.log(response);
       });
-    });
+    }); */
     
-    /* fetch by page:
     var old_pages = $scope.pages;
+    var old_list = {};
+    $scope.list.forEach(function (item, i, array){
+      old_list[item._id] = item.voteStatus;
+    });
     $scope.pages = 0;
     $scope.list = [];
     for(var i=0; i<old_pages; i++){
       $scope.fetchPage();
     }
-    */
+    // this part won't be necessary if doing checking server-side:
+    $scope.list.forEach(function (item, i , array){
+      var voteStatus = old_list[item._id];
+      if(voteStatus){
+        item.voteStatus = voteStatus;
+      }
+    });
+    
   };
 
   $scope.fetchPage = function(){ 
