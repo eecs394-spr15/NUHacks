@@ -2,6 +2,7 @@ angular.module('example', [])
 
 .controller('list', function($scope, $http, $interval) {
   $scope.list = [];
+  $scope.pages = 0;
 
   $scope.vote = function(item, direction){
     item.upvotes += direction * 1;
@@ -24,7 +25,6 @@ angular.module('example', [])
       //   $scope.list.push(tmp);
       // });
       $scope.list = data;
-      $scope.$apply();
     }).error(function (response) {
       supersonic.logger.debug(response);
     });
@@ -34,6 +34,32 @@ angular.module('example', [])
     $scope.init();
   };
 
-  $interval($scope.update, 1000);
+  $scope.fetchPage = function(){
+    $scope.pages += 0;
+    console.log($scope.pages);
+  };
 
+  $scope.init();
+  $interval(function(){$scope.fetchPage();}, 700);
+  $interval($scope.update, 60 * 1000);
+
+})
+
+// Need to make sure this only gets called once
+.directive("scroll", function ($window, $document) {
+    return function(scope, element, attrs) {
+      angular.element($window).bind("scroll", function(){
+        var height = $document[0].body.offsetHeight - this.innerHeight;
+        // load next page
+         if (this.pageYOffset >= height) {
+            scope.fetchPage();
+            console.log(this.pageYOffset + " " + height);
+         }
+         // pull to refresh
+         else if (this.pageYOffset <= 0){
+            scope.update();
+            console.log("not " + this.pageYOffset + " " + height);
+         }
+      });
+    };
 });
