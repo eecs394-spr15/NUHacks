@@ -15,32 +15,42 @@ angular.module('example', [])
     };
 
   $scope.init = function(){
-    $http.get('https://dry-coast-1630.herokuapp.com/posts')
-      .success(function (data, status, header, config) {
-        supersonic.logger.debug(data);
-      // response.data.children.forEach (function (entry, i) {
-      //   var tmp = {
-      //     "text": entry.data.text,
-      //     "score" : entry.data.upvotes};
-      //   $scope.list.push(tmp);
-      // });
-      $scope.list = data;
-    }).error(function (response) {
-      supersonic.logger.debug(response);
-    });
+    $scope.fetchPage();
   };
 
   $scope.update = function(){
-    $scope.init();
+    var old_pages = $scope.pages;
+    $scope.pages = 0;
+    for(var i=0; i<old_pages; i++){
+      $scope.fetchPage();
+    }
   };
 
-  $scope.fetchPage = function(){
-    $scope.pages += 0;
-    console.log($scope.pages);
+  $scope.fetchPage = function(){ 
+    $http.get('https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages)
+      .success(function (data, status, header, config) {
+        supersonic.logger.debug(data);
+        // response.data.children.forEach (function (entry, i) {
+        //   var tmp = {
+        //     "text": entry.data.text,
+        //     "score" : entry.data.upvotes};
+        //   $scope.list.push(tmp);
+        // });
+        data.forEach(function(elem, i, array) {
+          $scope.list.push(elem);
+        });
+
+        $scope.pages += 0;
+        console.log($scope.pages);
+
+      }).error(function (response) {
+        console.log(response);
+        supersonic.logger.debug(response);
+      });
+ 
   };
 
   $scope.init();
-  $interval(function(){$scope.fetchPage();}, 700);
   $interval($scope.update, 60 * 1000);
 
 })
