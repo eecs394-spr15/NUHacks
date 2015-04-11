@@ -3,10 +3,13 @@
     <super-navbar-title>
       NUHacks
     </super-navbar-title>
+    <super-navbar-button side="right" class="add-button" location="example#add-hack">
+      Add Hack
+    </super-navbar-button>
   </super-navbar>
   <table id="hack-table">
     <tbody ng-click="upvote()">
-      <tr ng-repeat="item in list | orderBy:'-upvotes'"">
+      <tr ng-repeat="item in list | orderBy:'-upvotes'">
         <td>
           {{ item.text }}
         </td>
