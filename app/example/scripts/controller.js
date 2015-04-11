@@ -5,7 +5,19 @@ angular.module('example', [])
   $scope.pages = 0;
 
   $scope.vote = function(item, direction){
+    if((item.upvoted && direction == 1) || (item.downvoted && direction == -1))
+      return;
+
     item.upvotes += direction * 1;
+
+    if(direction == 1){
+      item.downvoted = false;
+      item.upvoted = true;
+    } else if(direction == -1){
+      item.upvoted = false;
+      item.downvoted = true;
+    }
+
     $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
       .success(function (data, status, header, config){})
       .error(function (response){
@@ -19,24 +31,37 @@ angular.module('example', [])
   };
 
   $scope.update = function(){
+    /*
+    replace the upvotes for each item
+    doesn't get new posts that may have been added,
+    so once we had server-side verification we'll want
+    to use the method below (fetch by page) */
+    $scope.list.forEach(function(elem, i, array){
+      $http.get('https://dry-coast-1630.herokuapp.com/post/' + elem._id)
+      .success(function (data, status, header, config) {
+        elem.upvotes = data.upvotes;
+      }).error(function (response) {
+        console.log(response);
+      });
+    });
+    
+    /* fetch by page:
     var old_pages = $scope.pages;
     $scope.pages = 0;
+    $scope.list = [];
     for(var i=0; i<old_pages; i++){
       $scope.fetchPage();
     }
+    */
   };
 
   $scope.fetchPage = function(){ 
     $http.get('https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages)
       .success(function (data, status, header, config) {
-        supersonic.logger.debug(data);
-        // response.data.children.forEach (function (entry, i) {
-        //   var tmp = {
-        //     "text": entry.data.text,
-        //     "score" : entry.data.upvotes};
-        //   $scope.list.push(tmp);
-        // });
+        
         data.forEach(function(elem, i, array) {
+          elem.upvoted = false;
+          elem.downvoted = false;
           $scope.list.push(elem);
         });
 
@@ -45,7 +70,6 @@ angular.module('example', [])
 
       }).error(function (response) {
         console.log(response);
-        supersonic.logger.debug(response);
       });
  
   };
