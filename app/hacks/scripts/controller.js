@@ -1,4 +1,4 @@
-angular.module('example', [])
+angular.module('hacks', [])
 
 .controller('list', function($scope, $http, $interval) {
   $scope.list = [];
