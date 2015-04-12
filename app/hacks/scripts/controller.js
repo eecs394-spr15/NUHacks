@@ -41,14 +41,15 @@ angular.module('hacks', [])
     $scope.loading = true;
     
     var old_pages = $scope.pages;
-    var old_list = {};
-    $scope.list.forEach(function (item, i, array){
-      old_list[item._id] = item.voteStatus;
-    });
     $scope.pages = 0;
-    $scope.list = [];
-
+    
+    // replace old vote status for each item
     var onsuccess = function(data) {
+      var old_list = {};
+      $scope.list.forEach(function (item, i, array){
+        old_list[item._id] = item.voteStatus;
+      });
+      
       data.forEach(function(item, i, array){
         var voteStatus = old_list[item._id];
         if(voteStatus){
@@ -58,35 +59,34 @@ angular.module('hacks', [])
           console.log(old_list);
         }
       });
+
+      $scope.list = [];
     };
     
     $scope.fetchPage(old_pages, onsuccess);
-    // this part won't be necessary if doing checking server-side:
     
     
   };
 
   $scope.fetchPage = function(numpages, onsuccess){
     $scope.loading = true;
-    $http.get('https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages)
+    $http.get('https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages + '/' + ($scope.pages + numpages))
       .success(function (data, status, header, config) {
 
         $scope.pages += 1;
         console.log("Current pages: " + $scope.pages);
-        
-        data.forEach(function(elem, i, array) {
-          elem.voteStatus = 0;
-          $scope.list.push(elem);
-        });
 
         if(onsuccess){
           onsuccess(data);
         }
+        
+        data.forEach(function(elem, i, array) {
+          if(!elem.voteStatus)
+            elem.voteStatus = 0;
+          $scope.list.push(elem);
+        });
 
         $scope.loading = false;
-        if(numpages > 1){
-          fetchPage(numpages - 1, onsuccess);
-        }
 
       }).error(function (response) {
         console.log(response);
@@ -108,7 +108,7 @@ angular.module('hacks', [])
         var height = $document[0].body.offsetHeight - this.innerHeight;
         // load next page
          if (this.pageYOffset >= height && !scope.loading) {
-            scope.fetchPage(1, undefined);
+            scope.fetchPage(0, undefined);
             console.log(this.pageYOffset + " " + height);
          }
          // pull to refresh
