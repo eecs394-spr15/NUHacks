@@ -1,4 +1,4 @@
-<div ng-controller="IndexController">
+<div ng-controller="tag_list" ng-apps="tags">
 
   <super-navbar>
     <super-navbar-title>
@@ -7,8 +7,17 @@
   </super-navbar>
 
   <div class="padding">
-    <!-- <h1>This page is for tags.</h1> -->
-    <input type="text" my-on-key-down-call="callRestService()" placeholder="Search tags...">   
+    <input type="text" my-on-key-down-call="callRestService()" placeholder="Search tags..." style="text-align: center">   
   </div>
+
+  <table id="tag-table" scroll>
+    <tbody>
+      <tr ng-repeat="tag in tag_list | orderBy:'-upvotes'">
+        <td>
+          {{ tag.Name }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
 </div>
