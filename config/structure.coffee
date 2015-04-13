@@ -7,17 +7,17 @@ module.exports =
     {
       title: "Home"
       id: "index"
-      location: "example#getting-started" # Supersonic module#view type navigation
+      location: "hacks#feed" # Supersonic module#view type navigation
     }
     {
       title: "Tags"
       id: "tags"
-      location: ""
+      location: "tags#index"
     }
     {
       title: "Profile"
       id: "profile"
-      location: "" # URLs are supported!
+      location: "profile#index" # URLs are supported!
     }
   ]
 

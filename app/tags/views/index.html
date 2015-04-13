@@ -1,0 +1,23 @@
+<div ng-controller="tag_list" ng-apps="tags">
+
+  <super-navbar>
+    <super-navbar-title>
+      Tags
+    </super-navbar-title>
+  </super-navbar>
+
+  <div class="padding">
+    <input type="text" my-on-key-down-call="callRestService()" placeholder="Search tags..." style="text-align: center">   
+  </div>
+
+  <table id="tag-table" scroll >
+    <tbody>
+      <tr ng-repeat="tag in tag_list | orderBy:'-upvotes'">
+        <td>
+          {{ tag.Name }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

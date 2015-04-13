@@ -14,9 +14,13 @@ navigation-bar title {
   font-weight: 600;
 }
 
-navigation-bar button, navigation-bar back-bar-button {
+navigation-bar button {
   color: #ffffff;
   font-weight: 300;
+}
+
+navigation-bar button:pressed {
+  color: #AAAAAA;
 }
 
 tab-bar {
