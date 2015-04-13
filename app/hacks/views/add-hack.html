@@ -1,22 +1,14 @@
-<form class="form-horizontal">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Submit a new Hack</legend>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="textinput">Title</label>
-  <div class="controls">
-    <input id="textinput" name="textinput" type="text" placeholder="Title" class="input-xlarge">
-    <p class="help-block">The title of your Hack</p>
-  </div>
+<div class="list">
+  <label class="item item-input">
+    <input type="text" placeholder="Title">
+  </label>
+  <label class="item item-input">
+    <textarea placeholder="Description" rows="5"></textarea>
+  </label>
+  <label class="item item-input" placeholder="Tags">
+  	<input type="text" placeholder="Tags">
+  </label>
 </div>
-
-<!-- Textarea -->
-<div class="control-group">
-  <label class="control-label" for="textarea">Long Description</label>
-  <div class="controls">                     
-    <textarea id="textarea" name="textarea" placeholder="Description"></textarea>
-  </div>
-</div>
+<button class="button button-block button-royal">
+  Submit Hack
+</button>
