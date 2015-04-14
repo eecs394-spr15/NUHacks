@@ -8,8 +8,8 @@
     </super-navbar-button>
   </super-navbar>
   <div class="button-bar">
-      <a class="button" ng-click="setSortBy('-date')">New</a>
-      <a class="button" ng-click="setSortBy('-upvotes')">Popular</a>
+      <a class="button" ng-class="{buttonselected: (sortby == '-date')}" ng-click="setSortBy('-date')">New</a>
+      <a class="button" ng-class="{buttonselected: (sortby == '-upvotes')}" ng-click="setSortBy('-upvotes')">Popular</a>
   </div>
   <table id="hack-table" scroll>
     <tbody ng-click="upvote()">
