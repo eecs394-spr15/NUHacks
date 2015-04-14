@@ -12,9 +12,9 @@
 
   <table id="tag-table" scroll >
     <tbody>
-      <tr ng-repeat="tag in tag_list | orderBy:'-upvotes'">
-        <td>
-          {{ tag.Name }}
+      <tr ng-repeat="posts in tag_list">
+        <td ng-repeat="tag in posts.tags">
+          {{ tag }}
         </td>
       </tr>
     </tbody>
