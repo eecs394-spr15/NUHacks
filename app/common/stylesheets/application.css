@@ -8,6 +8,10 @@
   vertical-align: middle;
 }
 
+.buttonselected {
+  background-color: #AAAAAA !important;
+}
+
 .selectedgreen {
   color: #40CE01 !important;
 }
