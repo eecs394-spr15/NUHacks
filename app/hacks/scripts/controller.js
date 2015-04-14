@@ -1,6 +1,7 @@
 angular.module('hacks', [])
 
 .controller('list', function($scope, $http, $interval) {
+  supersonic.logger.info("Hello");
   $scope.list = [];
   $scope.pages = 0;
   $scope.loading = false;
@@ -92,7 +93,19 @@ angular.module('hacks', [])
         console.log(response);
         $scope.loading = false;
       });
- 
+  };
+
+  $scope.submitPost = function() {
+    supersonic.logger.debug($scope.newTitle);
+    supersonic.logger.debug($scope.newText);
+    supersonic.logger.debug($scope.newTags);
+    var user = {};
+    user.text = $scope.newText;
+    user.tags = $scope.newText.split(' ');
+    $http.post('http://localhost:7000/post', user)
+      .success(function(data, status, headers, config) {
+        supersonic.debugger.info(data);
+      });
   };
 
   $scope.init();
@@ -109,7 +122,7 @@ angular.module('hacks', [])
         // load next page
          if (this.pageYOffset >= height && !scope.loading) {
             scope.fetchPage(0, undefined);
-            console.log(this.pageYOffset + " " + height);
+            console.debug(this.pageYOffset + " " + height);
          }
          // pull to refresh
          else if (this.pageYOffset <= 0 && !scope.loading){

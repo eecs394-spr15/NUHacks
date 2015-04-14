@@ -1,14 +1,14 @@
 <div class="list">
   <label class="item item-input">
-    <input type="text" placeholder="Title">
+    <input type="text" placeholder="Title" ng-model="newTitle">
   </label>
   <label class="item item-input">
-    <textarea placeholder="Description" rows="5"></textarea>
+    <textarea placeholder="Description" rows="5" ng-model="newText"></textarea>
   </label>
-  <label class="item item-input" placeholder="Tags">
+  <label class="item item-input" placeholder="Tags" ng-model="newTags">
   	<input type="text" placeholder="Tags">
   </label>
 </div>
-<button class="button button-block button-royal">
+<button class="button button-block button-royal" ng-click="submitPost()">
   Submit Hack
 </button>
