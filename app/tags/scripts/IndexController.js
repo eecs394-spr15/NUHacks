@@ -13,3 +13,22 @@ angular.module('tags', [])
 // https://dry-coast-1630.herokuapp.com/search/:tags
 // return the result of posts with tags
 
+// todo: routing when clicking table rows,
+// 		 use templates
+
+
+// .config(function($routeProvider) {
+//     $routeProvider.
+//     when('/list', {
+//         controller: ListCtrl,
+//         templateUrl: 'list.html'
+//     }).
+//         when('/detail/:id', {
+//         controller: DetailCtrl,
+//         templateUrl: 'detail.html'
+//     }).
+//     otherwise({
+//         redirectTo: '/list'
+//     });
+// });
+
