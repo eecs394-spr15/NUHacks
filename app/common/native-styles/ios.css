@@ -20,22 +20,25 @@ navigation-bar button {
 }
 
 navigation-bar button:pressed {
-  color: #AAAAAA;
+  /*color: #AAAAAA;*/
+  color: #8A6DE9;
 }
 
 tab-bar {
-  background-color: #ffffff;
-  border-top: 1px #d8d8d8 solid;
+  background-color: #FFFADD;
+  border-top: 2px #8A6DE9 solid;
 }
 
 tab-bar tab-bar-item {
-  color: #b0b1b4;
+  /*color: #b0b1b4;*/
+  color: #8A6DE9;
   font-family: "Avenir";
   font-size: 10px;
 }
 
 tab-bar tab-bar-item:selected {
-  color: #1596f7;
+  /*color: #1596f7;*/
+  color: #8A6DE9;
 }
 
 tab-bar-item#tags {

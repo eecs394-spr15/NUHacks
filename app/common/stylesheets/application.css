@@ -22,7 +22,8 @@ span.glyphicon-menu-down {
 }
 
 .padding {
-  background-color: #E6E6FA;
+  /*background-color: #E6E6FA;*/
+  background-color: #FFFADD;
 }
 
 tr {
