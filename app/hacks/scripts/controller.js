@@ -7,11 +7,16 @@ angular.module('hacks', [])
 
   $scope.vote = function(item, direction){
     if(item.voteStatus == direction){
-      return;
+      item.voteStatus = 0;
+      item.upvotes += direction * -1;
+    } else if(item.voteStatus == -direction){
+      item.voteStatus = direction;
+      item.upvotes += 2 * direction;
+    } else{
+      item.upvotes += direction;
+      item.voteStatus = direction;
     }
-
-    item.upvotes += direction * 1;
-    item.voteStatus = direction;
+    
 
     $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
       .success(function (data, status, header, config){})
