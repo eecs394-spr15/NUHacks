@@ -9,34 +9,7 @@ angular.module('tags', [])
     });
 });
 
-// .config(function($routeProvider) {
-// 	$routeProvider.
-//     when('/list', {
-//         controller: ListCtrl,
-//         templateUrl: 'list.html'
-//     }).
-//         when('/detail/:tag', {
-//         controller: DetailCtrl,
-//         templateUrl: 'detail.html'
-//     }).
-//     otherwise({
-//         redirectTo: '/list'
-//     });
-// });
+// search by tags
+// https://dry-coast-1630.herokuapp.com/search/:tags
+// return the result of posts with tags
 
-
-// function ListCtrl($scope, $location) {
-//     $scope.items = data;
-    
-//     $scope.goto_detail = function(tag) {
-//         $location.url('/detail/' + tag);
-//     };
-// }
-
-// function DetailCtrl($scope, $location, $routeParams) {
-//     $scope.item = data[$routeParams.id];
-
-//     $scope.goto_list = function() {
-//         $location.url('/list');
-//     };
-// }

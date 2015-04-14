@@ -10,7 +10,7 @@
     <input type="text" my-on-key-down-call="callRestService()" placeholder="Search tags..." style="text-align: center">   
   </div>
 
-  <table id="tag-table" scroll >
+<!--   <table id="tag-table" scroll>
     <tbody>
       <tr ng-repeat="posts in tag_list">
         <td ng-repeat="tag in posts.tags">
@@ -18,6 +18,14 @@
         </td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 
+  <div class="list">
+    <div ng-repeat="posts in tag_list">
+      <a class="item" href="#" ng-repeat="tag in posts.tags">
+        #{{ tag }}
+      </a>
+    </div>
+    
+  </div>
 </div>
