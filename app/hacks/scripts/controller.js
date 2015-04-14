@@ -4,21 +4,12 @@ angular.module('hacks', [])
   $scope.list = [];
   $scope.pages = 0;
   $scope.loading = false;
-  $scope.choice = 0;
-  $scope.setchoice=function(choice){
-    $scope.choice=choice;
-  }
-  $scope.get=function(){
-    var choice= $scope.choice
-    if(choice==0)
-    {
-      return '-upvotes';
-    }
-    else
-    {
-      return '-date';
-    }
-  }
+  $scope.sortby = "-upvotes";
+
+  $scope.setchoice = function(choice){
+    $scope.sortby = choice;
+  };
+  
   $scope.vote = function(item, direction){
     if(item.voteStatus == direction){
       item.voteStatus = 0;
@@ -45,15 +36,7 @@ angular.module('hacks', [])
   };
 
   $scope.update = function(){
-    /*
-    $scope.list.forEach(function(elem, i, array){
-      $http.get('https://dry-coast-1630.herokuapp.com/post/' + elem._id)
-      .success(function (data, status, header, config) {
-        elem.voteStatus = data.voteStatus;
-      }).error(function (response) {
-        console.log(response);
-      });
-    }); */
+
     if($scope.loading){
       return;
     }
@@ -89,8 +72,11 @@ angular.module('hacks', [])
 
   $scope.fetchPage = function(numpages, onsuccess){
     $scope.loading = true;
-    var choice = $scope.choice;
-    $http( {method: 'GET', url: 'https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages + '/' + ($scope.pages + numpages), params: {sortby:choice} }
+    $http( {
+      method: 'GET',
+      url: 'https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages + '/' + ($scope.pages + numpages), 
+      params: {sortby:$scope.sortby}
+    })
     .success(function (data, status, header, config) {
 
       $scope.pages += 1;
