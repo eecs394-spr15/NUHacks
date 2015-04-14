@@ -5,6 +5,7 @@ angular.module('hacks', [])
   $scope.pages = 0;
   $scope.loading = false;
   $scope.sortby = "-upvotes";
+  $scope.old_votes = {};
 
   $scope.setSortBy = function(choice){
     console.log("sortby: " + choice);
@@ -49,13 +50,12 @@ angular.module('hacks', [])
     
     // replace old vote status for each item
     var onsuccess = function(data) {
-      var old_list = {};
       $scope.list.forEach(function (item, i, array){
-        old_list[item._id] = item.voteStatus;
+        $scope.old_votes[item._id] = item.voteStatus;
       });
       
       data.forEach(function(item, i, array){
-        var voteStatus = old_list[item._id];
+        var voteStatus = old_votes[item._id];
         if(voteStatus){
           console.log("text: " + item.text);
           item.voteStatus = voteStatus;
