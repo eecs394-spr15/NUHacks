@@ -18,7 +18,6 @@ angular
         error(function(data, status, headers, config) {
           steroids.logger.log('error occurred');
           steroids.logger.log(status);
-        })
-
+        });
     };
   });
