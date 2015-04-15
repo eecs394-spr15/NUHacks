@@ -1,36 +1,26 @@
-<div ng-controller="showTagController">
+<div class="padding" ng-controller="showTagController">
 
-  <super-navbar>
+    <super-navbar>
     <super-navbar-title>
       #{{ tags }}
     </super-navbar-title>
-  </super-navbar>
-
-<!--   <div class="list" ng-hide="show_tag_list">
-    <div ng-repeat="post in result">
-		<a class="item">
-        	{{ post.text }}
-    	</a>
-    </div>
-  </div> -->
-	<div class="padding">
-		<table id="hack-table" scroll>
-		    <tbody ng-click="upvote()">
-		      <tr ng-repeat="item in result | orderBy: sortby">
-		        <td>
-		          {{ item.text }}
-		        </td>
-		        <td align="center">
-		          <div class="score-display">
-		            <span class="glyphicon glyphicon-menu-up" ng-class="{selectedgreen: (item.voteStatus == 1)}" ng-click="vote(item, 1)" ></span><br>
-		              <span class="score">{{ item.upvotes }}</span><br>
-		            <span class="glyphicon glyphicon-menu-down"  ng-class="{selectedred: (item.voteStatus == -1)}" ng-click="vote(item, -1)"></span>
-		          </div>
-		        </td>
-		      </tr>
-		    </tbody>
-		  </table>
-	</div>
+    </super-navbar>
+    <table id="hack-table" style="width:100%" scroll>
+        <tbody ng-click="upvote()">
+          <tr ng-repeat="item in result | orderBy: sortby">
+            <td>
+              {{ item.text }}
+            </td>
+            <td align="center">
+              <div class="score-display">
+                <span class="glyphicon glyphicon-menu-up" ng-class="{selectedgreen: (item.voteStatus == 1)}" ng-click="vote(item, 1)" ></span><br>
+                  <span class="score">{{ item.upvotes }}</span><br>
+                <span class="glyphicon glyphicon-menu-down"  ng-class="{selectedred: (item.voteStatus == -1)}" ng-click="vote(item, -1)"></span>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
   
 
 </div>
