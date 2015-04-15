@@ -15,10 +15,11 @@
 
   <div class="list" ng-hide="show_tag_list">
     <div ng-repeat="tag in tag_list">
-      <!-- no tags data available now, test with author -->
-      <a class="item" ng-click="goto_result(tag)">
+      
+  <!-- use super-navigate to show search result of a certain tag -->
+      <super-navigate class="item" view-id="tags#search_result?tag={{ tag._id }}">
         #{{ tag._id }}
-      </a>
+      </super-navigate>
     </div>
   </div>
 
@@ -28,10 +29,4 @@
       {{ post.text }}
     </a>
   </div>
-<!--   <p ng-model="empty_result">
-    {{ empty_result }}
-  </p>
-  <p ng-model="show_status">
-    {{ show_status }}
-  </p> -->
 </div>
