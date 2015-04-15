@@ -12,21 +12,15 @@
   
   </div>
   
-
   <div class="list" ng-hide="show_tag_list">
-    <div ng-repeat="tag in tag_list">
+    <!-- use filter to get filtered result -->
+    <div ng-repeat="tag in tag_list | filter:input_tag">
+
       
   <!-- use super-navigate to show search result of a certain tag -->
       <super-navigate class="item" view-id="showTag#showTag?id={{ tag._id }}">
         #{{ tag._id }}
       </super-navigate>
     </div>
-  </div>
-
-  <!-- show search result -->
-  <div class="list" ng-model="result" ng-repeat="post in result" ng-hide="show_tag_result">
-    <a href="#" class="item">
-      {{ post.text }}
-    </a>
   </div>
 </div>
