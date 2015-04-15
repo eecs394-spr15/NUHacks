@@ -1,0 +1,17 @@
+<div ng-controller="showTagController">
+
+  <super-navbar>
+    <super-navbar-title>
+      #{{ tags }}
+    </super-navbar-title>
+  </super-navbar>
+
+  <div class="list" ng-hide="show_tag_list">
+    <div ng-repeat="post in result">
+		<a class="item">
+        	{{ post.text }}
+    	</a>
+    </div>
+  </div>
+
+</div>
