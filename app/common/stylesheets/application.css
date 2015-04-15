@@ -8,17 +8,25 @@
   vertical-align: middle;
 }
 
+.selectedgreen {
+  color: #40CE01 !important;
+}
+
+.selectedred {
+  color: red !important;
+}
+
 span.glyphicon-menu-up {
   font-size: 25px;
   padding-bottom: -20px;
-  color: #2DB82D;
+  color: #77A485;
 }
 
 span.glyphicon-menu-down {
   font-size: 25px;
   padding-bottom: 10px;
   padding-top: -20px;
-  color: red;
+  color: #F37578;
 }
 
 .padding {
