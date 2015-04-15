@@ -1,35 +1,26 @@
-<div ng-apps="tags">
-
+<div ng-apps="tags" ng-controller="tag_list">
   <super-navbar>
     <super-navbar-title>
       Tags
     </super-navbar-title>
   </super-navbar>
 
-  <form class="padding" ng-submit="myFunc()" >
-     <input type="text" ng-model="name" style="text-align: center">
-      <br />
-      <input type="text" ng-model="email" style="text-align: center">
-  </form>
+  <div class="padding">
+    <form ng-submit="search()">
+      <input type="text" style="text-align: center" ng-model="input_tag" placeholder="Search tags...">
+    </form>
+  
+  </div>
+  
+  <div class="list" ng-hide="show_tag_list">
+    <!-- use filter to get filtered result -->
+    <div ng-repeat="tag in tag_list | filter:input_tag">
 
-<!--   <div class="padding" ng-controller="SearchCtrl">
-    <input type="text" ng-model="keywords" placeholder="Search tags..." style="text-align: center">   
-  </div> -->
-
-  <div class="list" ng-controller="tag_list">
-    <div ng-repeat="posts in tag_list">
-      <!-- no tags data available now, test with author -->
-
-
-<!--       <a class="item" ng-click="goto_result(tag)" ng-repeat="tag in posts.tags">
-        #{{ tag }}
-      </a> -->
-
-      <a class="item" href="">
-        {{ posts.author }}
-      </a>
-
+      
+  <!-- use super-navigate to show search result of a certain tag -->
+      <super-navigate class="item" view-id="showTag#showTag?id={{ tag._id }}">
+        #{{ tag._id }}
+      </super-navigate>
     </div>
-    
   </div>
 </div>
