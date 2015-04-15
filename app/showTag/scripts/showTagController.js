@@ -8,8 +8,5 @@ angular
     	.success(function (data,status) {
     		
     		$scope.result = angular.fromJson(data);
-    		// $scope.show_status = status;
-    		// $scope.show_tag_result = false;
-    		// $scope.show_tag_list = true;	
     	});
   });
