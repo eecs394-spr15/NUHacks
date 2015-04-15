@@ -1,23 +1,18 @@
-
+<div ng-apps="tags" ng-controller="tag_list">
   <super-navbar>
     <super-navbar-title>
       Tags
     </super-navbar-title>
   </super-navbar>
 
-
-  
-
-<div ng-apps="tags" ng-controller="tag_list">
-
   <div class="padding">
     <input type="text" style="text-align: center" ng-model="input_tag">
-  <button type="submit" ng-click="search()">Search</button>
+    <button type="submit" ng-click="search()">Search</button>
   
   </div>
   
 
-  <div class="list">
+  <div class="list" ng-hide="show_tag_list">
     <div ng-repeat="tag in tag_list">
       <!-- no tags data available now, test with author -->
       <a class="item" ng-click="goto_result(tag)">
@@ -26,9 +21,16 @@
     </div>
   </div>
 
-  <div class="list" ng-model="result" ng-repeat="post in result">
+  <!-- show search result -->
+  <div class="list" ng-model="result" ng-repeat="post in result" ng-hide="show_tag_result">
     <a href="#" class="item">
       {{ post.text }}
     </a>
   </div>
+<!--   <p ng-model="empty_result">
+    {{ empty_result }}
+  </p>
+  <p ng-model="show_status">
+    {{ show_status }}
+  </p> -->
 </div>
