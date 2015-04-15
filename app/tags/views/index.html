@@ -6,8 +6,9 @@
   </super-navbar>
 
   <div class="padding">
-    <input type="text" style="text-align: center" ng-model="input_tag">
-    <button type="submit" ng-click="search()">Search</button>
+    <form ng-submit="search()">
+      <input type="text" style="text-align: center" ng-model="input_tag" placeholder="Search tags...">
+    </form>
   
   </div>
   
