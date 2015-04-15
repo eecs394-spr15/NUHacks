@@ -5,7 +5,15 @@ angular.module('hacks', [])
   $scope.list = [];
   $scope.pages = 0;
   $scope.loading = false;
+  $scope.sortby = "-upvotes";
+  $scope.old_votes = {};
 
+  $scope.setSortBy = function(choice){
+    console.log("sortby: " + choice);
+    $scope.sortby = choice;
+    $scope.update();
+  };
+  
   $scope.vote = function(item, direction){
     if(item.voteStatus == direction){
       item.voteStatus = 0;
@@ -32,15 +40,7 @@ angular.module('hacks', [])
   };
 
   $scope.update = function(){
-    /*
-    $scope.list.forEach(function(elem, i, array){
-      $http.get('https://dry-coast-1630.herokuapp.com/post/' + elem._id)
-      .success(function (data, status, header, config) {
-        elem.voteStatus = data.voteStatus;
-      }).error(function (response) {
-        console.log(response);
-      });
-    }); */
+
     if($scope.loading){
       return;
     }
@@ -51,18 +51,17 @@ angular.module('hacks', [])
     
     // replace old vote status for each item
     var onsuccess = function(data) {
-      var old_list = {};
       $scope.list.forEach(function (item, i, array){
-        old_list[item._id] = item.voteStatus;
+        $scope.old_votes[item._id] = item.voteStatus;
       });
       
       data.forEach(function(item, i, array){
-        var voteStatus = old_list[item._id];
+        var voteStatus = old_votes[item._id];
         if(voteStatus){
           console.log("text: " + item.text);
           item.voteStatus = voteStatus;
         } else{
-          console.log(old_list);
+          console.log("not found: " + item.text);
         }
       });
 
@@ -76,21 +75,26 @@ angular.module('hacks', [])
 
   $scope.fetchPage = function(numpages, onsuccess){
     $scope.loading = true;
-    $http.get('https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages + '/' + ($scope.pages + numpages))
-      .success(function (data, status, header, config) {
+    $http( {
+      method: 'GET',
+      url: 'https://dry-coast-1630.herokuapp.com/posts/' + $scope.pages + '/' + ($scope.pages + numpages),
+      params: {sortby: $scope.sortby}
+    })
+    .success(function (data, status, header, config) {
 
-        $scope.pages += 1;
-        console.log("Current pages: " + $scope.pages);
+      $scope.pages += 1;
+      console.log("Current pages: " + $scope.pages);
 
-        if(onsuccess){
+      if(onsuccess){
           onsuccess(data);
         }
         
-        data.forEach(function(elem, i, array) {
-          if(!elem.voteStatus)
-            elem.voteStatus = 0;
-          $scope.list.push(elem);
-        });
+      data.forEach(function(elem, i, array) {
+        if(!elem.voteStatus)
+          elem.voteStatus = 0;
+        $scope.list.push(elem);
+      });
+      
 
         $scope.loading = false;
 
@@ -111,6 +115,7 @@ angular.module('hacks', [])
       .success(function(data, status, headers, config) {
         supersonic.debugger.info(data);
       });
+
   };
 
   $scope.init();

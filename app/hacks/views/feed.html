@@ -8,12 +8,12 @@
     </super-navbar-button>
   </super-navbar>
   <div class="button-bar">
-      <button class="button button-royal">New</button>
-      <button class="button button-royal">Popular</button>
+      <a class="button" ng-class="{buttonselected: (sortby == '-date')}" ng-click="setSortBy('-date')">New</a>
+      <a class="button" ng-class="{buttonselected: (sortby == '-upvotes')}" ng-click="setSortBy('-upvotes')">Popular</a>
   </div>
   <table id="hack-table" scroll>
     <tbody ng-click="upvote()">
-      <tr ng-repeat="item in list | orderBy:'-upvotes'">
+      <tr ng-repeat="item in list | orderBy: sortby">
         <td>
           {{ item.text }}
         </td>

@@ -1,4 +1,4 @@
-<div ng-controller="tag_list" ng-apps="tags">
+<div ng-apps="tags">
 
   <super-navbar>
     <super-navbar-title>
@@ -6,15 +6,29 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="padding">
-    <input type="text" my-on-key-down-call="callRestService()" placeholder="Search tags..." style="text-align: center">   
-  </div>
+  <form class="padding" ng-submit="myFunc()" >
+     <input type="text" ng-model="name" style="text-align: center">
+      <br />
+      <input type="text" ng-model="email" style="text-align: center">
+  </form>
 
-  <div class="list">
+<!--   <div class="padding" ng-controller="SearchCtrl">
+    <input type="text" ng-model="keywords" placeholder="Search tags..." style="text-align: center">   
+  </div> -->
+
+  <div class="list" ng-controller="tag_list">
     <div ng-repeat="posts in tag_list">
-      <a class="item" ng-click="goto_result(tag)" ng-repeat="tag in posts.tags">
+      <!-- no tags data available now, test with author -->
+
+
+<!--       <a class="item" ng-click="goto_result(tag)" ng-repeat="tag in posts.tags">
         #{{ tag }}
+      </a> -->
+
+      <a class="item" href="">
+        {{ posts.author }}
       </a>
+
     </div>
     
   </div>
