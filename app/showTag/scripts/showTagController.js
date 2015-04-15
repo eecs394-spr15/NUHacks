@@ -1,6 +1,6 @@
 angular
   .module('showTag')
-  .controller('showTagController', function($scope, $http) {
+  .controller('showTagController', function($scope, $http, $interval) {
     // Controller functionality here
     $scope.tags = steroids.view.params.id;
 
