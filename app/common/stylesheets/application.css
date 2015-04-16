@@ -40,6 +40,16 @@ li.tag-item {
   color: #fff;
 }
 
+li.tag-item-display {
+  display: inline; 
+  list-style-type: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #428bca;
+  color: white;
+  border-radius: 4px;
+}
+
 .padding {
   /*background-color: #E6E6FA;*/
   background-color: #FFFADD;
