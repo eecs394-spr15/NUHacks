@@ -33,6 +33,13 @@ span.glyphicon-menu-down {
   color: #F37578;
 }
 
+li.tag-item {
+  background: #428bca !important;
+  border: 1px solid #357ebd;
+  border-radius: 4px;
+  color: #fff;
+}
+
 .padding {
   /*background-color: #E6E6FA;*/
   background-color: #FFFADD;

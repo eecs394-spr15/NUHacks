@@ -30,7 +30,9 @@ angular
           data.forEach(function(item, i, array){
             array[i] = item._id;
           });
-          return data;
+          return data.filter(function(item) {
+            return item.toLowerCase().indexOf(query.toLowerCase()) != -1;
+          });
         })
       });
     };
