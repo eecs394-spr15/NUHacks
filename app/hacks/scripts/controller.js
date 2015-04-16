@@ -36,7 +36,7 @@ angular.module('hacks', [])
     };
 
   $scope.init = function(){
-    $scope.fetchPage();
+    $scope.fetchPage(0, undefined);
   };
 
   $scope.update = function(){
@@ -56,7 +56,7 @@ angular.module('hacks', [])
       });
       
       data.forEach(function(item, i, array){
-        var voteStatus = old_votes[item._id];
+        var voteStatus = $scope.old_votes[item._id];
         if(voteStatus){
           console.log("text: " + item.text);
           item.voteStatus = voteStatus;
@@ -94,9 +94,8 @@ angular.module('hacks', [])
           elem.voteStatus = 0;
         $scope.list.push(elem);
       });
-      
 
-        $scope.loading = false;
+      $scope.loading = false;
 
       }).error(function (response) {
         console.log(response);
