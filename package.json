@@ -2,7 +2,9 @@
   "name": "NUHacks",
   "version": "0.0.0",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "ng-tags-input": "^2.3.0"
+  },
   "devDependencies": {
     "grunt-steroids": "1.x"
   }
