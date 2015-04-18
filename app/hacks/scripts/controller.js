@@ -1,4 +1,8 @@
-angular.module('hacks', ['ngAnimate'])
+angular.module('hacks', ['angular-loading-bar','ngAnimate'])
+
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.latencyThreshold = 10;
+}])
 
 .controller('list', function($scope, $http, $interval, $animate) {
   supersonic.logger.info("Hello");
