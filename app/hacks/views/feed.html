@@ -11,18 +11,24 @@
       <a class="button" ng-class="{buttonselected: (sortby == '-date')}" ng-click="setSortBy('-date')">New</a>
       <a class="button" ng-class="{buttonselected: (sortby == '-upvotes')}" ng-click="setSortBy('-upvotes')">Popular</a>
   </div>
+
+
   <table id="hack-table" scroll>
     <tbody ng-click="upvote()">
       <tr ng-repeat="item in list | orderBy: sortby">
         <!-- Text and tags -->
+        
         <td>
-          <div style="position:relative; overflow: auto; height: 100%;">
+          <super-navigate view-id="showHack#showHack?id={{ item._id }}">
+          <div style="position:relative; overflow: auto; height: 110px;">
             {{ item.text }}
             <ul ng-repeat="tag in item.tags | limitTo : 3" style="position: absolute; bottom: 0;">
               <li class="tag-item-display">{{ tag }}</li>
             </ul>
           </div>
+          </super-navigate>  
         </td>
+        
         <!-- End text and tags -->
         <!-- Upvote display -->
         <td align="center">
