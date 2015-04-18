@@ -1,6 +1,6 @@
-angular.module('hacks', [])
+angular.module('hacks', ['ngAnimate'])
 
-.controller('list', function($scope, $http, $interval) {
+.controller('list', function($scope, $http, $interval, $animate) {
   supersonic.logger.info("Hello");
   $scope.list = [];
   $scope.pages = 0;
@@ -13,7 +13,7 @@ angular.module('hacks', [])
     $scope.sortby = choice;
     $scope.update();
   };
-  
+
   $scope.vote = function(item, direction){
     if(item.voteStatus == direction){
       item.voteStatus = 0;
@@ -25,7 +25,6 @@ angular.module('hacks', [])
       item.upvotes += direction;
       item.voteStatus = direction;
     }
-    
 
     $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
       .success(function (data, status, header, config){})
