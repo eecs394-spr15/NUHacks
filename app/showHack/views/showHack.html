@@ -1,13 +1,38 @@
-<div ng-controller="IndexController">
+<div class="padding" ng-app="showHack" ng-controller="showHackController">
 
   <super-navbar>
     <super-navbar-title>
-      Index
+      Post
     </super-navbar-title>
   </super-navbar>
 
-  <div class="padding">
-    <h1>Pow! Here's your fresh module!</h1>
-  </div>
+  
+    <table id="hack-table" style="width:100%" scroll>
+	    <tbody ng-click="upvote()" ng-model="result">
+	      <tr>
+	        <!-- Text and tags -->
+	        <td>
+	          <div style="position:relative; overflow: auto; height: 110px;">
+	            {{ item.text }}
+	            <ul ng-repeat="tag in item.tags" style="position: absolute; bottom: 0;">
+	              <li class="tag-item-display">#{{ tag }}</li>
+	            </ul>
+	          </div>
+	          
+	        </td>
+	        
+	        <!-- End text and tags -->
+	        <!-- Upvote display -->
+	        <td align="center">
+	          <div class="score-display">
+	            <span class="glyphicon glyphicon-menu-up" ng-class="{selectedgreen: (item.voteStatus == 1)}" ng-click="vote(item, 1)" ></span><br>
+	              <span class="score">{{ item.upvotes }}</span><br>
+	            <span class="glyphicon glyphicon-menu-down"  ng-class="{selectedred: (item.voteStatus == -1)}" ng-click="vote(item, -1)"></span>
+	          </div>
+	        </td>
+	        <!-- End upvote display-->
+	      </tr>
+	    </tbody>
+	  </table>
 
 </div>
