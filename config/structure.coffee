@@ -15,10 +15,16 @@ module.exports =
       location: "tags#index"
     }
     {
+      title: "Search"
+      id: "widesearch"
+      location: "widesearch#index" # URLs are supported!
+    }
+    {
       title: "Profile"
       id: "profile"
       location: "profile#index" # URLs are supported!
     }
+   
   ]
 
   # rootView:
