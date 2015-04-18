@@ -55,6 +55,13 @@ li.tag-item-display {
   background-color: #FFFADD;
 }
 
+div.load-indicator {
+  height: 100px;
+  text-align: center;
+  font-size: large;
+  padding-top: 10%;
+}
+
 tr {
   border-bottom:solid;
   border-width: 1px 0;
