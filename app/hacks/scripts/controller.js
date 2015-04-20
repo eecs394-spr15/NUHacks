@@ -1,6 +1,10 @@
-angular.module('hacks', [])
+angular.module('hacks', ['angular-loading-bar','ngAnimate'])
 
-.controller('list', function($scope, $http, $interval) {
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.latencyThreshold = 10;
+}])
+
+.controller('list', function($scope, $http, $interval, $animate) {
   supersonic.logger.info("Hello");
   $scope.list = [];
   $scope.pages = 0;
@@ -13,7 +17,7 @@ angular.module('hacks', [])
     $scope.sortby = choice;
     $scope.update();
   };
-  
+
   $scope.vote = function(item, direction){
     if(item.voteStatus == direction){
       item.voteStatus = 0;
@@ -25,7 +29,6 @@ angular.module('hacks', [])
       item.upvotes += direction;
       item.voteStatus = direction;
     }
-    
 
     $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
       .success(function (data, status, header, config){})
@@ -36,7 +39,7 @@ angular.module('hacks', [])
     };
 
   $scope.init = function(){
-    $scope.fetchPage();
+    $scope.fetchPage(0, undefined);
   };
 
   $scope.update = function(){
@@ -56,7 +59,7 @@ angular.module('hacks', [])
       });
       
       data.forEach(function(item, i, array){
-        var voteStatus = old_votes[item._id];
+        var voteStatus = $scope.old_votes[item._id];
         if(voteStatus){
           console.log("text: " + item.text);
           item.voteStatus = voteStatus;
@@ -94,9 +97,8 @@ angular.module('hacks', [])
           elem.voteStatus = 0;
         $scope.list.push(elem);
       });
-      
 
-        $scope.loading = false;
+      $scope.loading = false;
 
       }).error(function (response) {
         console.log(response);
