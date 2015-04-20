@@ -25,7 +25,7 @@ navigation-bar button:pressed {
 }
 
 tab-bar {
-  background-color: #FFFADD;
+  background-color: black;
   border-top: 2px #8A6DE9 solid;
 }
 

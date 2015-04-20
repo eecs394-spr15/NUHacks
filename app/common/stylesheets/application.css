@@ -9,7 +9,8 @@
 }
 
 .buttonselected {
-  background-color: #AAAAAA !important;
+  background-color: #8A6DE9 !important;
+  color: white !important;
 }
 
 .selectedgreen {
@@ -33,13 +34,6 @@ span.glyphicon-menu-down {
   color: #F37578;
 }
 
-li.tag-item {
-  background: #428bca !important;
-  border: 1px solid #357ebd;
-  border-radius: 4px;
-  color: #fff;
-}
-
 li.tag-item-display {
   display: inline; 
   list-style-type: none;
@@ -51,8 +45,8 @@ li.tag-item-display {
 }
 
 .padding {
-  /*background-color: #E6E6FA;*/
-  background-color: #FFFADD;
+  background-color: white;
+  width:100%;
 }
 
 div.load-indicator {
@@ -103,5 +97,7 @@ tr.ng-move.ng-move-active {
   opacity:1;
 }
 
-
+#hack-table {
+  width:100%;
+}
 
