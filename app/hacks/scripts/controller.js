@@ -8,6 +8,16 @@ angular.module('hacks', [])
   $scope.sortby = "-upvotes";
   $scope.old_votes = {};
 
+  $('.load').hide();
+  // var options = { 
+  //   'pullThreshold':50, // Pull threshold - amount in  pixels required to pull to enable release callback
+  //   'callback':function(){
+  //     steroids.logger.log('Pulling to refresh.');
+  //   }, // triggers after user pulls the content over pull threshold and releases
+  //   'spinnerTimeout':2000 // timeout in miliseconds after which the loading indicator stops spinning. If set to 0 - the loading will be indefinite
+  // };
+  // $('#hack-table').xpull(options);
+
   $scope.setSortBy = function(choice){
     console.log("sortby: " + choice);
     $scope.sortby = choice;
@@ -135,7 +145,16 @@ angular.module('hacks', [])
          }
          // pull to refresh
          else if (this.pageYOffset <= 0 && !scope.loading){
-            scope.update();
+            // steroids.logger.log($('.load'));
+            $('.load').show({
+              duration: 100
+            });
+            setTimeout(function() {
+              scope.update();
+              $('.load').hide({
+                duration: 100
+              });
+            }, 800) 
             console.log("not " + this.pageYOffset + " " + height);
          }
       });
