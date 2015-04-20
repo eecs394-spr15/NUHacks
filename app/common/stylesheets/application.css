@@ -65,5 +65,14 @@ span.score {
   font-size: 125%;
 }
 
+i#loader {
+  display: none;
+  width: 100%;
+  text-align: center;
+  margin-top: -2px;
+  margin-bottom: 5px;
+}
+
+
 
 
