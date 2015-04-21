@@ -12,8 +12,8 @@
       <a class="button" ng-class="{buttonselected: (sortby == '-upvotes')}" ng-click="setSortBy('-upvotes')">Popular</a>
   </div>
 
-
-  <table id="hack-table" scroll>
+  <div class="content">
+  <table class="hack-table" id="hack-table" scroll>
     <tbody ng-click="upvote()">
       <tr ng-repeat="item in list | orderBy: sortby">
         <!-- Text and tags -->
@@ -44,5 +44,6 @@
   </table>
   <div class="load-indicator">
     <p >Scroll down to load more</p>
+  </div>
   </div>
 </div>

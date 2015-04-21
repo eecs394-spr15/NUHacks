@@ -37,12 +37,16 @@ tab-bar tab-bar-item {
 }
 
 tab-bar tab-bar-item:selected {
-  /*color: #1596f7;*/
   color: #8A6DE9;
+  background-color: #8A6DE9;
 }
 
 tab-bar-item#tags {
-  background-image: url(icons/tags.svg)
+  background-image: url(icons/tags.svg);
+}
+
+tab-bar-item#tags:selected {
+  background-color: purple;
 }
 tab-bar-item#widesearch {
   background-image: url(icons/search.svg);

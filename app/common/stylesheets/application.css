@@ -1,5 +1,4 @@
 .supersonic-navbar-mock {
-  background-color: #520063 !important;
   text-align: center;
   font-weight: 600;
 }
@@ -46,7 +45,6 @@ li.tag-item-display {
 
 .padding {
   background-color: white;
-  width:100%;
 }
 
 div.load-indicator {
@@ -96,8 +94,3 @@ tr.ng-move {
 tr.ng-move.ng-move-active {
   opacity:1;
 }
-
-#hack-table {
-  width:100%;
-}
-
