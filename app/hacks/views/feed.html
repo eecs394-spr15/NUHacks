@@ -24,8 +24,14 @@
           <super-navigate view-id="showHack#showHack?id={{ item._id }}">
           <div style="position:relative; overflow: auto; height: 110px;">
             {{ item.text }}
-            <ul ng-repeat="tag in item.tags | limitTo : 3" style="position: absolute; bottom: 0;">
-              <li class="tag-item-display">#{{ tag }}</li>
+            <ul style="position: absolute; bottom: 0;">
+              <div>
+                <super-navigate view-id="showTag#showTag?id={{ tag}}" ng-repeat="tag in item.tags | limitTo : 3">
+                  <li class="tag-item-display"  >{{ tag }}</li>
+                </super-navigate>
+                
+              </div>
+              
             </ul>
           </div>
           </super-navigate>  

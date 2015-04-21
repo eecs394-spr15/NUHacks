@@ -41,13 +41,15 @@ li.tag-item {
 }
 
 li.tag-item-display {
-  display: inline; 
+  display: inline-block; 
   list-style-type: none;
   padding-left: 10px;
   padding-right: 10px;
   background-color: #428bca;
   color: white;
   border-radius: 4px;
+  margin-right: 10px;
+
 }
 
 .padding {
@@ -103,6 +105,8 @@ tr.ng-move.ng-move-active {
   opacity:1;
 }
 
+<<<<<<< HEAD
+=======
 i#loader {
   display: none;
   width: 100%;
@@ -114,3 +118,4 @@ i#loader {
 
 
 
+>>>>>>> 34355246d450f8ce1f880b0ad5b4a804311bad96
