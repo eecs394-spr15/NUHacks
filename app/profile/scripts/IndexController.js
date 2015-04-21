@@ -5,7 +5,7 @@ angular.module('profile', ['angular-loading-bar','ngAnimate'])
     cfpLoadingBarProvider.latencyThreshold = 50;
 }])
 
-.controller('IndexController', function($scope, $http, $interval, $animate) {
+.controller('IndexController', function($scope, $http, $interval, $animate, $window) {
   supersonic.logger.info("Hello");
   $scope.list = [];
   $scope.pages = 0;
@@ -78,7 +78,7 @@ angular.module('profile', ['angular-loading-bar','ngAnimate'])
   };
 
   var getAuthorId = function(){
-    return $window.localStorage['userId'];
+    return $window.localStorage['authorId'];
   };
 
   $scope.fetchPage = function(numpages, onsuccess){

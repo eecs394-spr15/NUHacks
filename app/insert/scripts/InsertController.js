@@ -14,7 +14,7 @@ angular
       loadOnEmpty: true
     })
   })
-  .controller('InsertController', function($scope, $http, supersonic) {
+  .controller('InsertController', function($scope, $http, $window, supersonic) {
     steroids.logger.log('Hello there!');
 
     var appendTransform = function(defaults, transform) {
@@ -38,13 +38,14 @@ angular
     };
 
     var getAuthorId = function(){
-      return $window.localStorage['userId'];
+      return $window.localStorage['authorId'];
     };
 
     $scope.submitPost = function(post) {
       steroids.logger.log('Inside submitPost()');
-      post.author = 'User';
-      post.authorId = getAuthorId();
+      post["author"] = getAuthorId();
+      post["authorId"] = getAuthorId();
+      console.log(post["authorId"]);
       post.tags.forEach(function(item, i, array){
         array[i] = item["text"];
       });
