@@ -9,7 +9,12 @@
         <tbody ng-click="upvote()">
           <tr ng-repeat="item in result | orderBy: sortby">
             <td>
-              {{ item.text }}
+              <div style="position:relative; overflow: auto; height: 110px;">
+                {{ item.text }}
+              <ul style="position: absolute; bottom: 0;">
+                  <li class="tag-item-display" ng-repeat="tag in item.tags">#{{ tag }}</li>
+              </ul>
+              </div>
             </td>
             <td align="center">
               <div class="score-display">

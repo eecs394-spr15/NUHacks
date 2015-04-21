@@ -37,9 +37,14 @@ angular
       });
     };
 
+    var getAuthorId = function(){
+      return $window.localStorage['userId'];
+    };
+
     $scope.submitPost = function(post) {
       steroids.logger.log('Inside submitPost()');
       post.author = 'User';
+      post.authorId = getAuthorId();
       post.tags.forEach(function(item, i, array){
         array[i] = item["text"];
       });

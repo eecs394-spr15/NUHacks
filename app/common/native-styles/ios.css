@@ -25,7 +25,7 @@ navigation-bar button:pressed {
 }
 
 tab-bar {
-  background-color: #FFFADD;
+  background-color: black;
   border-top: 2px #8A6DE9 solid;
 }
 
@@ -37,12 +37,11 @@ tab-bar tab-bar-item {
 }
 
 tab-bar tab-bar-item:selected {
-  /*color: #1596f7;*/
   color: #8A6DE9;
 }
 
 tab-bar-item#tags {
-  background-image: url(icons/tags.svg)
+  background-image: url(icons/tags.svg);
 }
 tab-bar-item#widesearch {
   background-image: url(icons/search.svg);
