@@ -2,6 +2,8 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
 
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.latencyThreshold = 10;
+    cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.includeBar = false;
 }])
 
 .controller('list', function($scope, $http, $interval, $animate) {
@@ -11,6 +13,8 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
   $scope.loading = false;
   $scope.sortby = "-upvotes";
   $scope.old_votes = {};
+
+  // $('#loader').hide();
 
   $scope.setSortBy = function(choice){
     console.log("sortby: " + choice);
@@ -30,7 +34,7 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
       item.voteStatus = direction;
     }
 
-    $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']})
+    $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']}, {ignoreLoadingBar: true})
       .success(function (data, status, header, config){})
       .error(function (response){
         item.text = response;
@@ -138,7 +142,12 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
          }
          // pull to refresh
          else if (this.pageYOffset <= 0 && !scope.loading){
-            scope.update();
+            // steroids.logger.log($('#loader'));
+            $('#loader').css('display', 'block');
+            setTimeout(function() {
+              $('#loader').css('display', 'none');
+              scope.update();
+            }, 1200) 
             console.log("not " + this.pageYOffset + " " + height);
          }
       });
