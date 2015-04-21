@@ -6,15 +6,28 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
     cfpLoadingBarProvider.includeBar = false;
 }])
 
-.controller('list', function($scope, $http, $interval, $animate) {
-  supersonic.logger.info("Hello");
+.controller('list', function($scope, $http, $interval, $animate, $window) {
+  
+  function newGuid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+      s4() + '-' + s4() + s4() + s4();
+  }
+
   $scope.list = [];
   $scope.pages = 0;
   $scope.loading = false;
   $scope.sortby = "-upvotes";
   $scope.old_votes = {};
 
-  // $('#loader').hide();
+  if ($window.localStorage['authorID'] === '') {
+    $window.localStorage['authorID'] = newGuid();
+  }
+  var userID = $window.localStorage['authorID'];
 
   $scope.setSortBy = function(choice){
     console.log("sortby: " + choice);
