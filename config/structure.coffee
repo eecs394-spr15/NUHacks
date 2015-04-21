@@ -22,7 +22,7 @@ module.exports =
     {
       title: "Profile"
       id: "profile"
-      location: "profile#index" # URLs are supported!
+      location: "profile#profile" # URLs are supported!
     }
    
   ]
