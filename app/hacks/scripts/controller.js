@@ -6,28 +6,51 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
     cfpLoadingBarProvider.includeBar = false;
 }])
 
-.controller('list', function($scope, $http, $interval, $animate, $window) {
-  
-  function newGuid() {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
-      s4() + '-' + s4() + s4() + s4();
-  }
 
+.factory('localStorageService', function($window){
+
+  var service = {};
+
+  service.saveState = function(scope){
+      $window.localStorage.setItem("old_votes", angular.toJson(scope.old_votes));
+    };
+
+  service.restoreState = function(scope){
+      if ($window.localStorage['old_votes']) {
+         scope.old_votes = angular.fromJson($window.localStorage['old_votes']);
+         scope.$apply();
+       }
+    };
+
+  service.makeGuid = function(){
+      function newGuid() {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+          s4() + '-' + s4() + s4() + s4();
+      }
+
+      if ($window.localStorage['authorId'] === '') {
+        $window.localStorage['authorId'] = newGuid();
+      }
+    };
+
+  return service;
+  
+})
+
+.controller('list', function($scope, $http, $interval, $animate, $window, localStorageService) {
+  
   $scope.list = [];
   $scope.pages = 0;
   $scope.loading = false;
   $scope.sortby = "-upvotes";
   $scope.old_votes = {};
 
-  if ($window.localStorage['authorId'] === '') {
-    $window.localStorage['authorId'] = newGuid();
-  }
-  var userID = $window.localStorage['authorId'];
+  localStorageService.makeGuid();
 
   $scope.setSortBy = function(choice){
     console.log("sortby: " + choice);
@@ -46,6 +69,13 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
       item.upvotes += direction;
       item.voteStatus = direction;
     }
+
+    // This hardly seems like the ideal approach,
+    // but angular won't update this object on the scope
+    // unless it's a new copy of the object
+    console.log(item._id);
+    $scope.old_votes = jQuery.extend(true, {}, $scope.old_votes);
+    $scope.old_votes[item._id] = item.voteStatus;
 
     $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']}, {ignoreLoadingBar: true})
       .success(function (data, status, header, config){})
@@ -69,26 +99,12 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
     var old_pages = $scope.pages;
     $scope.pages = 0;
     
-    // replace old vote status for each item
+    // need to do after the http request so that the feed doesn't go blank
     var onsuccess = function(data) {
-      $scope.list.forEach(function (item, i, array){
-        $scope.old_votes[item._id] = item.voteStatus;
-      });
-      
-      data.forEach(function(item, i, array){
-        var voteStatus = $scope.old_votes[item._id];
-        if(voteStatus){
-          console.log("text: " + item.text);
-          item.voteStatus = voteStatus;
-        } else{
-          console.log("not found: " + item.text);
-        }
-      });
-
       $scope.list = [];
     };
     
-    $scope.fetchPage(old_pages, onsuccess);
+    $scope.fetchPage(old_pages - 1, onsuccess);
     
     
   };
@@ -102,17 +118,33 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
     })
     .success(function (data, status, header, config) {
 
-      $scope.pages += 1;
+      $scope.pages += numpages + 1;
       console.log("Current pages: " + $scope.pages);
 
-      if(onsuccess){
-          onsuccess(data);
+      data.forEach(function(item, i, array){
+        var voteStatus = $scope.old_votes[item._id];
+        if(voteStatus){
+          console.log("text: " + item.text);
+          item.voteStatus = voteStatus;
+        } else{
+          console.log("not found: " + item.text);
+          console.log(item._id);
         }
+      });
+
+      if(onsuccess){
+        onsuccess();
+      }
         
-      data.forEach(function(elem, i, array) {
-        if(!elem.voteStatus)
-          elem.voteStatus = 0;
-        $scope.list.push(elem);
+      data.forEach(function(item, i, array) {
+        var voteStatus = $scope.old_votes[item._id];
+        if(voteStatus){
+          console.log("text: " + item.text);
+          item.voteStatus = voteStatus;
+        } else{
+          item.voteStatus = 0;
+        }
+        $scope.list.push(item);
       });
 
       $scope.loading = false;
@@ -137,12 +169,14 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
 
   };
 
+  localStorageService.restoreState($scope);
   $scope.init();
   $interval($scope.update, 60 * 1000);
+  $scope.$watch('old_votes', function(){localStorageService.saveState($scope);}, true);
+  
 
 })
 
-// Need to make sure this only gets called once
 // change "scroll" to "touchend"?
 .directive("scroll", function ($window, $document) {
     return function(scope, element, attrs) {
@@ -160,7 +194,7 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
             setTimeout(function() {
               $('#loader').css('display', 'none');
               scope.update();
-            }, 1200) 
+            }, 1200);
             console.log("not " + this.pageYOffset + " " + height);
          }
       });
