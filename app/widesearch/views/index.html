@@ -1,4 +1,4 @@
-<div ng-apps="searchhack" ng-controller="searchpage">
+<div ng-apps="widesearch" ng-controller="searchpage">
 
   <super-navbar>
     <super-navbar-title>
@@ -6,28 +6,26 @@
     </super-navbar-title>
   </super-navbar>
 
+  <!-- <div class="padding"> 
+    	<input type="text" style="text-align: center" ng-model="hacks" placeholder="Find a hack...">
+  </div> -->
   <div class="padding">
-  	<div class="button-bar">
-  		<button ng-click="search()">goo</button>
- 	<!-- <form ng-submit="search()"> -->
-    	<input type="text" style="text-align: center" ng-model="hack_need" placeholder="Find a hack...">
-    <!-- </form>	 -->
+
+		<input type="text" style="text-align: center" ng-model="hackey" placeholder="Find a hack..." />
+
+  </div> 
+
+  <div class="hacklist">
+  	<div class="button" ng-click="search()">go</div>    
+		<li ng-repeat="i in items ">
+			<p>{{i._text}}</p>
+		</li>
+		<!-- <p ng-hide="xx">Please click a menu item</p> -->
   </div>
 
-
-  
-  <div class="result">
-  	
-  		<div ng-repeat="item in searchpage">
-  			<td ng-bind="item"></td>
-  		<!-- <div ng-show="!isxxx()">
-  			<h1> used</h1>
-  		</div>	
-  		<div ng-show="isxxx()">
-  			<h2> fuck</h2> -->
-  	
- 
-  		</div>
- 
-  </div>
 </div>
+
+
+
+
+	
