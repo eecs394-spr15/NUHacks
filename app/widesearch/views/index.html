@@ -1,13 +1,37 @@
-<div ng-controller="IndexController">
+<div ng-apps="widesearch" ng-controller="searchpage">
 
   <super-navbar>
     <super-navbar-title>
-      Index
+      Search
     </super-navbar-title>
   </super-navbar>
 
+  <!-- <div class="padding"> 
+    	<input type="text" style="text-align: center" ng-model="hacks" placeholder="Find a hack...">
+  </div> -->
   <div class="padding">
-    <h1>Pow! Here's your fresh module!</h1>
+  	<form ng-submit="search()">
+		<input type="text" style="text-align: center" ng-model="hackey" placeholder="Find a hack..." />
+	</form>
+
+  </div> 
+
+  <div class="hacklist">
+  	<!-- <div class="button" ng-click="search()">go</div>     -->
+		<div ng-repeat="i in items ">
+			<!-- <p>{{i.text}}</p> -->
+			<super-navigate class="item" view-id="showHack#showHack?id={{ i._id }}">
+        	{{i.text}}
+      			</super-navigate>
+		
+
+		</div>
+		<!-- <p ng-hide="xx">Please click a menu item</p> -->
   </div>
 
 </div>
+
+
+
+
+	

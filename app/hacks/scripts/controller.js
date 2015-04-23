@@ -24,10 +24,10 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
   $scope.sortby = "-upvotes";
   $scope.old_votes = {};
 
-  if ($window.localStorage['authorID'] === '') {
-    $window.localStorage['authorID'] = newGuid();
+  if ($window.localStorage['authorId'] === '') {
+    $window.localStorage['authorId'] = newGuid();
   }
-  var userID = $window.localStorage['authorID'];
+  var userID = $window.localStorage['authorId'];
 
   $scope.setSortBy = function(choice){
     console.log("sortby: " + choice);
