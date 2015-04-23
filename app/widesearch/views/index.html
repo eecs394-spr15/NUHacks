@@ -17,9 +17,11 @@
 
   <div class="hacklist">
   	<div class="button" ng-click="search()">go</div>    
-		<li ng-repeat="i in items ">
-			<p>{{i._text}}</p>
-		</li>
+		<div ng-repeat="i in items ">
+			<p>{{i.text}}</p>
+		
+
+		</div>
 		<!-- <p ng-hide="xx">Please click a menu item</p> -->
   </div>
 

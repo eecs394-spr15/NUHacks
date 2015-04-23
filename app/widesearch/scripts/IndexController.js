@@ -5,6 +5,7 @@ angular.module('widesearch',[])
 		$scope.tag_list=[];
 		$scope.items=[];
 		$scope.search = function(){
+			$scope.items=[];
 		  	$http.get("https://dry-coast-1630.herokuapp.com/search_hack/" + $scope.hackey)
 		    	.success(function(data){
 
