@@ -15,7 +15,7 @@ angular.module('widesearch',[])
 				        $scope.items.push(elem);
 				      });
 
-		    alert($scope.items);
+		    // alert($scope.items);
 		   });
 		}
 		
