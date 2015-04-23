@@ -39,7 +39,9 @@ tab-bar tab-bar-item {
 tab-bar tab-bar-item:selected {
   color: #8A6DE9;
 }
-
+tab-bar-item#widesearch{
+  background-image: url(icons/search.svg);
+}
 tab-bar-item#tags {
   background-image: url(icons/tags.svg);
 }
