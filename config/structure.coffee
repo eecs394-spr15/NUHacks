@@ -15,12 +15,6 @@ module.exports =
       location: "tags#index"
     }
 
-    {
-      title: "Search"
-      id: "widesearch"
-      location: "widesearch#index"
-
-    }
 
 
     {

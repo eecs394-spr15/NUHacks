@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 angular.module('widesearch',[])
   .controller('searchpage', function($scope, $http){
   		$scope.hackey="";
@@ -62,10 +62,4 @@ angular.module('widesearch',[])
 // 	};
 
 // });
-=======
-angular
-  .module('widesearch')
-  .controller('IndexController', function($scope, supersonic) {
-    // Controller functionality here
-  });
->>>>>>> Stashed changes
+

@@ -45,9 +45,7 @@ tab-bar-item#widesearch{
 tab-bar-item#tags {
   background-image: url(icons/tags.svg);
 }
-tab-bar-item#widesearch {
-  background-image: url(icons/search.svg);
-}
+
 tab-bar-item#index {
   background-image: url(icons/home.svg);
 }
