@@ -115,3 +115,12 @@ i#loader {
   margin-bottom: 5px;
 }
 
+/*remove bootstrap button gradient style*/
+a,
+.btn,
+.navbar-inner,
+.btn-navbar,
+.progress,
+.progress .bar {
+  background-image: none!important;
+}
