@@ -7,6 +7,10 @@
   vertical-align: middle;
 }
 
+.hackdisplay {
+  vertical-align:middle;
+}
+
 .buttonselected {
   background-color: #8A6DE9 !important;
   color: white !important;
@@ -50,6 +54,11 @@ div.textbox {
   margin-right: -20px;
 }
 
+div.hackbox {
+  width:80%;
+  margin-right: 20px;
+}
+
 .padding {
   background-color: white;
 }
@@ -73,7 +82,6 @@ span.score {
 
 span.hackscore {
   font-size: 125%;
-  padding-right: 3px;
 }
 
 tr.ng-enter,
