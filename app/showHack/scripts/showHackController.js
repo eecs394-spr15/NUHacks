@@ -1,6 +1,6 @@
 angular
   .module('showHack')
-  .controller('showHackController', function($scope, $http, $window, $location) {
+  .controller('showHackController', function($scope, $http, $window) {
     // Controller functionality here
     $scope.posts = steroids.view.params.id;
 
