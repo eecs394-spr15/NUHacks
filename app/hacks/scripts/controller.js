@@ -1,4 +1,4 @@
-angular.module('hacks', ['angular-loading-bar','ngAnimate'])
+angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
 
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.latencyThreshold = 10;
@@ -58,6 +58,10 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
     $scope.update();
   };
 
+  $scope.process = function(date){
+    return date;
+  };
+
   $scope.vote = function(item, direction){
     if(item.voteStatus == direction){
       item.voteStatus = 0;
@@ -100,6 +104,7 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate'])
     $scope.pages = 0;
     
     // need to do after the http request so that the feed doesn't go blank
+    // TODO: change to interceptor
     var onsuccess = function(data) {
       $scope.list = [];
     };

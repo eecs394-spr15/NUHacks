@@ -1,5 +1,5 @@
 angular
-  .module('showHack')
+  .module('showHack', ['ngSanitize'])
   .controller('showHackController', function($scope, $http) {
     // Controller functionality here
     $scope.posts = steroids.view.params.id;
