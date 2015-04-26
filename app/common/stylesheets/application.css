@@ -66,6 +66,11 @@ span.score {
   font-size: 125%;
 }
 
+span.hackscore {
+  font-size: 125%;
+  padding-right: 2.5px;
+}
+
 tr.ng-enter,
 tr.ng-leave,
 tr.ng-move {
