@@ -76,6 +76,10 @@ tr {
   border-color: #D3D3D3;
 }
 
+tr.show-hack {
+  border-bottom:none;
+}
+
 span.score {
   font-size: 125%;
 }
@@ -123,3 +127,12 @@ i#loader {
   margin-bottom: 5px;
 }
 
+/*remove bootstrap button gradient style*/
+a,
+.btn,
+.navbar-inner,
+.btn-navbar,
+.progress,
+.progress .bar {
+  background-image: none!important;
+}

@@ -8,7 +8,8 @@
 
     <table id="hack-table" style="width:100%" scroll>
 	    <tbody ng-click="upvote()">
-	      <tr>
+	      <tr class="show-hack">
+
 	        <!-- Text and tags -->
 	        <td>
 	          <div class="hackbox" style="position:absolute; overflow: auto; height: 110px;">
@@ -19,6 +20,18 @@
 	            	</div>
 	              
 	            </ul>
+	          <div style="overflow: true">
+	          	<div style="border: 1px">
+		          	<h2>{{ item.title }}</h2>
+		            <p><span ng-bind-html="item.text | linky"></span></p>
+	        	</div>
+	            
+            	<div style="position: absolute; display: inline; width: 100%">
+            		<ul>
+            			<li class="tag-item-display" ng-repeat="tag in item.tags">#{{ tag }}</li>
+            		</ul>
+            		<div>{{ item.date | date: 'short'}}</div>
+            	</div>
 	          </div>
 	          
 	        </td>

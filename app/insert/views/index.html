@@ -7,7 +7,7 @@
 			<label class="item item-input">
 				<textarea placeholder="Description" rows="5" ng-model="post.text"></textarea>
 			</label>
-			<tags-input ng-model="post.tags">
+			<tags-input ng-model="post.tags" allowed-tags-pattern="^[\w\d]+$">
 				<auto-complete source="loadTags($query)"></auto-complete>
 			</tags-input>
 		</div>
