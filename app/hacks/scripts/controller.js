@@ -38,6 +38,15 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
       }
     };
 
+  service.getAuthorId = function(){
+    return $window.localStorage['authorId'];
+  };
+
+  service.getVoteStatus = function(id){
+    var old_votes = angular.fromJson($window.localStorage['old_votes']);
+    return old_votes[id]
+  }
+
   return service;
   
 })
@@ -68,6 +77,7 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
   };
 
   $scope.vote = function(item, direction){
+    item.voteStatus = localStorageService.getVoteStatus(item._id);
     if(item.voteStatus == direction){
       item.voteStatus = 0;
       item.upvotes += direction * -1;
@@ -85,6 +95,7 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
     console.log(item._id);
     $scope.old_votes = jQuery.extend(true, {}, $scope.old_votes);
     $scope.old_votes[item._id] = item.voteStatus;
+    localStorageService.saveState($scope);
 
     $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']}, {ignoreLoadingBar: true})
       .success(function (data, status, header, config){})

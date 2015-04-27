@@ -45,7 +45,9 @@ li.tag-item-display {
   background-color: #428bca;
   color: white;
   border-radius: 4px;
-  margin-right: 10px;
+  margin-right: 5px;
+  margin-top: 5px;
+  
 
 }
 
@@ -86,6 +88,12 @@ span.score {
 
 span.hackscore {
   font-size: 125%;
+}
+
+.delete-button {
+  position:absolute;
+  bottom:0;
+  width: 94% !important;
 }
 
 tr.ng-enter,
