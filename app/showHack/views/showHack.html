@@ -12,12 +12,12 @@
 
 	        <!-- Text and tags -->
 	        <td>
-	          <div class="hackbox" style="position:absolute; overflow: auto; height: 110px;">
-	            {{ item.text }}
+	          <div class="hackbox" style="position:absolute; overflow: auto; height: 150px;">
+	            <!-- {{ item.text }} -->
 	            <ul style="position: absolute; bottom: 15px;">
-	            	<div>
+	            	<!-- <div>
 	            		<li class="tag-item-display" ng-repeat="tag in item.tags">{{ tag }}</li>
-	            	</div>
+	            	</div> -->
 	              
 	            </ul>
 	          <div style="overflow: true">
@@ -47,9 +47,14 @@
 	        <!-- End upvote display-->
 	      </tr>
 	    </tbody>
+	    <tfoot>
+	    	<button ng-show="own(item)" ng-click="deletePost(item)" class="button button-full button-assertive delete-button">
+	    		Delete this post
+	    	</button>
+	    </tfoot>
 	  </table>
-	   <button ng-show="own(item)" ng-click="deletePost(item)" class="button button-full button-assertive delete-button">
+	    <!-- <button ng-show="own(item)" ng-click="deletePost(item)" class="button button-full button-assertive delete-button">
 	    	Delete this post
-	    </button>
+	    </button> -->
 
 </div>
