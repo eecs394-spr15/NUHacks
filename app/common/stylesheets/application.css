@@ -7,6 +7,10 @@
   vertical-align: middle;
 }
 
+.hackdisplay {
+  vertical-align:middle;
+}
+
 .buttonselected {
   background-color: #8A6DE9 !important;
   color: white !important;
@@ -45,6 +49,16 @@ li.tag-item-display {
 
 }
 
+div.textbox {
+  width:90%;
+  margin-right: -20px;
+}
+
+div.hackbox {
+  width:80%;
+  margin-right: 20px;
+}
+
 .padding {
   background-color: white;
 }
@@ -62,7 +76,15 @@ tr {
   border-color: #D3D3D3;
 }
 
+tr.show-hack {
+  border-bottom:none;
+}
+
 span.score {
+  font-size: 125%;
+}
+
+span.hackscore {
   font-size: 125%;
 }
 
@@ -103,4 +125,14 @@ i#loader {
   text-align: center;
   margin-top: -2px;
   margin-bottom: 5px;
+}
+
+/*remove bootstrap button gradient style*/
+a,
+.btn,
+.navbar-inner,
+.btn-navbar,
+.progress,
+.progress .bar {
+  background-image: none!important;
 }
