@@ -20,7 +20,7 @@ module.exports =
       location: "widesearch#index" # URLs are supported!
     }
     {
-      title: "Profile"
+      title: "You"
       id: "profile"
       location: "profile#profile" # URLs are supported!
     }
