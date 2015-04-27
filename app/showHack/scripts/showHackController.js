@@ -20,6 +20,7 @@ angular
     		.success(function(data, status) {
     			if (data) {
     				steroids.logger.log('Post deleted!');
+    				supersonic.data.channel('reload').publish({ status: true });
     				supersonic.ui.layers.pop();
     			} else {
     				steroids.logger.log('Post deletion failed!');
