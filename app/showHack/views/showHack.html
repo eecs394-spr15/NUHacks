@@ -1,55 +1,32 @@
 <div class="padding" ng-app="showHack" ng-controller="showHackController">
 
-  <super-navbar>
-    <super-navbar-title>
-      Post
-    </super-navbar-title>
-  </super-navbar>
+	<super-navbar>
+	<super-navbar-title>
+	Post
+</super-navbar-title>
+</super-navbar>
 
-    <table id="hack-table" style="width:100%" scroll>
-	    <tbody ng-click="upvote()">
-	      <tr class="show-hack">
+	<div class="hackbox" style="width: 85%; overflow: auto; float: left;">
+		<ul>
+			<li class="list-el">{{ item.text }}</li>
+			<li class="list-el tag-item-display" ng-repeat="tag in item.tags">#{{ tag }}</li>
+			<li class="list-el">{{ item.date | date:'short' }}</li>
+		</ul>
+	</div>
+	<ul class="hackdisplay" style="float: right;">
+		<li>
+			<span class="glyphicon glyphicon-menu-up" ng-class="{selectedgreen: (item.voteStatus == 1)}" ng-click="vote(item, 1)" ></span>
+		</li>
+		<li style="text-align: center;">
+			{{ item.upvotes }}
+		</li>
+		<li>
+			<span class="glyphicon glyphicon-menu-down"  ng-class="{selectedred: (item.voteStatus == -1)}" ng-click="vote(item, -1)"></span>
+		</li>
+	</ul>
 
-	        <!-- Text and tags -->
-	        <td>
-	          <div class="hackbox" style="position:absolute; overflow: auto; height: 110px;">
-	            {{ item.text }}
-	            <ul style="position: absolute; bottom: 15px;">
-	            	<div>
-	            		<li class="tag-item-display" ng-repeat="tag in item.tags">{{ tag }}</li>
-	            	</div>
-	              
-	            </ul>
-	          <div style="overflow: true">
-	          	<div style="border: 1px">
-		          	<h2>{{ item.title }}</h2>
-		            <p><span ng-bind-html="item.text | linky"></span></p>
-	        	</div>
-	            
-            	<div style="position: absolute; display: inline; width: 100%">
-            		<ul>
-            			<li class="tag-item-display" ng-repeat="tag in item.tags">#{{ tag }}</li>
-            		</ul>
-            		<div>{{ item.date | date: 'short'}}</div>
-            	</div>
-	          </div>
-	        </td>
-	        
-	        <!-- End text and tags -->
-	        <!-- Upvote display -->
-	        <td align="center">
-	          <div class="pull-right hackdisplay">
-	            <span class="glyphicon glyphicon-menu-up" ng-class="{selectedgreen: (item.voteStatus == 1)}" ng-click="vote(item, 1)" ></span><br>
-	              <span class="hackscore">{{ item.upvotes }}</span><br>
-	            <span class="glyphicon glyphicon-menu-down"  ng-class="{selectedred: (item.voteStatus == -1)}" ng-click="vote(item, -1)"></span>
-	          </div>
-	        </td>
-	        <!-- End upvote display-->
-	      </tr>
-	    </tbody>
-	  </table>
-	   <button ng-show="own(item)" ng-click="deletePost(item)" class="button button-full button-assertive delete-button">
-	    	Delete this post
-	    </button>
+	<button ng-show="own(item)" ng-click="deletePost(item)" class="button button-full button-assertive delete-button">
+		Delete this post
+	</button>
 
 </div>

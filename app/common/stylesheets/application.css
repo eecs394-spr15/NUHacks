@@ -136,3 +136,7 @@ a,
 .progress .bar {
   background-image: none!important;
 }
+
+.list-el {
+  margin-top: 5px;
+}
