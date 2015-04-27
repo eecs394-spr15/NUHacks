@@ -1,5 +1,4 @@
 angular
-<<<<<<< HEAD
   .module('showHack', ['ngSanitize'])
   .controller('showHackController', function($scope, $http, $window) {
     // Controller functionality here
