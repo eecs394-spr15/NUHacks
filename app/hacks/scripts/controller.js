@@ -50,6 +50,11 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
   $scope.sortby = "-upvotes";
   $scope.old_votes = {};
 
+  supersonic.data.channel('reload').subscribe(function(msg) {
+    steroids.logger.log(msg.status);
+    steroids.logger.log('visible now');
+  });
+
   localStorageService.makeGuid();
 
   $scope.setSortBy = function(choice){
