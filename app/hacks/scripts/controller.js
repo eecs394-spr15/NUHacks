@@ -194,20 +194,20 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
     return function(scope, element, attrs) {
       angular.element($window).bind("scroll", function(){
         var height = $document[0].body.offsetHeight - this.innerHeight;
-        // load next page
-         if (this.pageYOffset >= height && !scope.loading) {
-            scope.fetchPage(0, undefined);
-            console.debug(this.pageYOffset + " " + height);
-         }
          // pull to refresh
-         else if (this.pageYOffset <= 0 && !scope.loading){
+         if (this.pageYOffset <= 0 && !scope.loading){
             // steroids.logger.log($('#loader'));
             $('#loader').css('display', 'block');
             setTimeout(function() {
               $('#loader').css('display', 'none');
               scope.update();
-            }, 1200);
+            }, 400);
             console.log("not " + this.pageYOffset + " " + height);
+         }
+         // load next page
+         else if (this.pageYOffset >= height && !scope.loading) {
+            scope.fetchPage(0, undefined);
+            console.debug(this.pageYOffset + " " + height);
          }
       });
     };
