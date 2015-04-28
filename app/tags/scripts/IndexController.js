@@ -10,6 +10,7 @@ angular.module('tags', [])
     $http.get("https://dry-coast-1630.herokuapp.com/tags")
     .success(function (response) {
     	$scope.tag_list = angular.fromJson(response);
+ 
     });
 
     
