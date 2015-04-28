@@ -5,7 +5,7 @@
       #{{ tags }}
     </super-navbar-title>
     </super-navbar>
-<!--     <table id="hack-table" style="width:100%" scroll>
+    <table id="hack-table" style="width:100%" scroll>
         <tbody ng-click="upvote()">
           <tr ng-repeat="item in result | orderBy: sortby">
             <td>
@@ -26,42 +26,7 @@
           </tr>
         </tbody>
       </table>
-   -->
-     <table id="hack-table" scroll>
-  <!-- <table id="hack-table"> -->
-    <tbody ng-click="upvote()">
-      <tr ng-repeat="item in result | orderBy: sortby">
-        <!-- Text and tags -->
-        
-        <td>
-          <super-navigate view-id="showHack#showHack?id={{ item._id }}">
-          <div class="textbox" style="position:relative; overflow: auto; height: 110px;">
-            {{ item.text }}
-            <ul style="position: absolute; bottom: 0;">
-              <div>
-                <super-navigate view-id="showTag#showTag?id={{ tag}}" ng-repeat="tag in item.tags | limitTo : 3">
-                  <li class="tag-item-display"  >#{{ tag }}</li>
-                </super-navigate>
-                
-              </div>
-              
-            </ul>
-          </div>
-          </super-navigate>  
-        </td>
-        
-        <!-- End text and tags -->
-        <!-- Upvote display -->
-        <td align="center">
-          <div class="score-display">
-            <span class="glyphicon glyphicon-menu-up" ng-class="{selectedgreen: (item.voteStatus == 1)}" ng-click="vote(item, 1)" ></span><br>
-              <span class="score">{{ item.upvotes }}</span><br>
-            <span class="glyphicon glyphicon-menu-down"  ng-class="{selectedred: (item.voteStatus == -1)}" ng-click="vote(item, -1)"></span>
-          </div>
-        </td>
-        <!-- End upvote display-->
-      </tr>
-    </tbody>
-  </table>
+  
+
 
 </div>
