@@ -14,6 +14,20 @@ angular
     	return authorID === hack.authorId;
     };
 
+    $scope.vote = function(item, direction){
+        item.voteStatus = localStorageService.getVoteStatus(item._id);
+        if(item.voteStatus == direction){
+            item.voteStatus = 0;
+            item.upvotes += direction * -1;
+        } else if(item.voteStatus == -direction){
+            item.voteStatus = direction;
+            item.upvotes += 2 * direction;
+        } else{
+            item.upvotes += direction;
+            item.voteStatus = direction;
+        }
+    };
+
     $scope.deletePost = function(hack) {
     	var id = hack._id;
     	$http.delete('https://dry-coast-1630.herokuapp.com/post/' + id)

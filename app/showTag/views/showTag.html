@@ -5,16 +5,19 @@
       #{{ tags }}
     </super-navbar-title>
     </super-navbar>
+
     <table id="hack-table" style="width:100%" scroll>
         <tbody ng-click="upvote()">
           <tr ng-repeat="item in result | orderBy: sortby">
             <td>
+              <super-navigate view-id="showHack#showHack?id={{ item._id }}">
               <div style="position:relative; overflow: auto; height: 110px;">
                 {{ item.text }}
               <ul style="position: absolute; bottom: 0;">
                   <li class="tag-item-display" ng-repeat="tag in item.tags">#{{ tag }}</li>
               </ul>
               </div>
+              </super-navigate>  
             </td>
             <td align="center">
               <div class="score-display">
@@ -27,5 +30,6 @@
         </tbody>
       </table>
   
+
 
 </div>

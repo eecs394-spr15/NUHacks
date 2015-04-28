@@ -3,7 +3,7 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.latencyThreshold = 10;
     cfpLoadingBarProvider.includeSpinner = false;
-    cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.includeBar = true;
 }])
 
 
@@ -18,7 +18,6 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
   service.restoreState = function(scope){
       if ($window.localStorage['old_votes']) {
          scope.old_votes = angular.fromJson($window.localStorage['old_votes']);
-         scope.$apply();
        }
     };
 
@@ -33,8 +32,8 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
           s4() + '-' + s4() + s4() + s4();
       }
 
-      if ($window.localStorage['authorId'] === '') {
-        $window.localStorage['authorId'] = newGuid();
+      if ($window.localStorage['authorId'] == undefined) {
+        $window.localStorage.setItem('authorId', newGuid());
       }
     };
 
@@ -78,14 +77,15 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
 
   $scope.vote = function(item, direction){
     item.voteStatus = localStorageService.getVoteStatus(item._id);
+    var delta_votes = 0;
     if(item.voteStatus == direction){
       item.voteStatus = 0;
-      item.upvotes += direction * -1;
+      delta_votes = direction * -1;
     } else if(item.voteStatus == -direction){
       item.voteStatus = direction;
-      item.upvotes += 2 * direction;
+      delta_votes = 2 * direction;
     } else{
-      item.upvotes += direction;
+      delta_votes = direction;
       item.voteStatus = direction;
     }
 
@@ -97,8 +97,10 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
     $scope.old_votes[item._id] = item.voteStatus;
     localStorageService.saveState($scope);
 
-    $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id, {'upvotes':item['upvotes']}, {ignoreLoadingBar: true})
-      .success(function (data, status, header, config){})
+    $http.put('https://dry-coast-1630.herokuapp.com/post/' + item._id +'/vote/' + delta_votes, {'upvotes':item['upvotes']}, {ignoreLoadingBar: true})
+      .success(function (data, status, header, config){
+        item.upvotes = data.upvotes + delta_votes;
+      })
       .error(function (response){
         item.text = response;
         supersonic.logger.debug(response);
@@ -141,17 +143,6 @@ angular.module('hacks', ['angular-loading-bar','ngAnimate', 'ngSanitize'])
 
       $scope.pages += numpages + 1;
       console.log("Current pages: " + $scope.pages);
-
-      data.forEach(function(item, i, array){
-        var voteStatus = $scope.old_votes[item._id];
-        if(voteStatus){
-          console.log("text: " + item.text);
-          item.voteStatus = voteStatus;
-        } else{
-          console.log("not found: " + item.text);
-          console.log(item._id);
-        }
-      });
 
       if(onsuccess){
         onsuccess();

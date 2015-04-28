@@ -144,3 +144,13 @@ a,
 .progress .bar {
   background-image: none!important;
 }
+
+.btn:active,
+.btn.active {
+  background-image: none!important;
+  outline: 0 !important;
+}
+
+* {
+  text-shadow: none!important;
+}
